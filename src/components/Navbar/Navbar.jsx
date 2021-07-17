@@ -7,13 +7,13 @@ import useStyles from '../Navbar/styles';
 import IconButton from '@material-ui/core/IconButton';
 import SideDrawer from '../SideDrawer/SideDrawer';
 
-const Navbar = () => {
+const Navbar = (props) => {
     const classes = useStyles()
     return (
         <>
             <AppBar position="static" className={classes.navbar}>
                 <Toolbar >
-                    <SideDrawer/>
+                    <SideDrawer setCategory={props.setCategory}/>
                     <Box className={classes.icon}>
                         <img className={classes.iconStyle} src="https://assets.inshorts.com/website_assets/images/logo_inshorts.png" alt="" />
                     </Box>

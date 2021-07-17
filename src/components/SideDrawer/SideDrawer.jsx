@@ -15,7 +15,7 @@ import { useMediaQuery, ThemeProvider } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
 import categories from '../data/Category';
 
-const SideDrawer = () => {
+const SideDrawer = (props) => {
     const classes = useStyles();
     const [state, setState] = React.useState({
         left: false,
@@ -58,7 +58,7 @@ const SideDrawer = () => {
             </List>
             <List>
                 {categories.map((text, index) => (
-                    <ListItem button key={text}>
+                    <ListItem className={classes.ListItemStyles} button key={text} onClick={()=>props.setCategory(text)}>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
