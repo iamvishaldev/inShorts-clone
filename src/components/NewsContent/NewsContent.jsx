@@ -17,8 +17,9 @@ const NewsContent = (props) => {
             </Box>
             {
                 props.newsArray.map((currentNews) => (
-                    <NewsCard title={currentNews.title}
+                    <NewsCard key={currentNews.title} title={currentNews.title}
                         author={currentNews.author} description={currentNews.description} image={currentNews.urlToImage}
+                        publishedAt={currentNews.publishedAt} url={currentNews.url} sourceName={currentNews.source.name}
                     />
                 ))
             }

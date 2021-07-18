@@ -8,24 +8,36 @@ import useStyles from '../NewsCard/styles'
 
 
 
-export default function NewsCard() {
+export default function NewsCard(props) {
+
     const classes = useStyles();
+
+    //2021-01-09T12:15:30Z
+    const fulldate = new Date(props.publishedAt); // Sat  Jan 09 2021  17:45:30  GMT+0530
+    var date = fulldate.toString().split(" "); // ["Sat", "Jan", "09", "2021", "17:45:30", "GMT+0530"]
+    const hour = parseInt(date[4].substring(0, 2)); //
+    const time = hour > 12 ? true : false;
+
+
     return (
         <Card className={classes.CardContainer}>
             <CardMedia
-                className={classes.media}
-                image="/static/images/cards/paella.jpg"
-                title="Paella dish"
+                image={props.image
+                }
+                className={classes.cardImage}
             />
-            <CardHeader
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-            />
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            <CardContent className={classes.cardTextContainer}>
+                <CardHeader
+                    title={props.title}
+                    subheader={`short by ${props.author ? props.author : "by inshorts"} / ${props.publishedAt}`}
+                    className={classes.cardHeader}
+                />
+                <Typography className={classes.description} variant="body2" color="textSecondary" component="p"  >
+                    {props.description}
                 </Typography>
+                <span className={classes.readmore}>
+                    read more at <a href={props.url} style={{ textDecoration: "none", color: "black" }}>{props.sourceName}</a>
+                </span>
             </CardContent>
         </Card>
     );
